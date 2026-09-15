@@ -1,0 +1,6 @@
+{
+  "name": "Sakina",
+  "description": "Islamic mindfulness, authentic dhikr, word-by-word Quranic tadabbur, and daily spiritual habits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

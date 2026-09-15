@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sakina</string>
+    <string name="app_tagline">Islamic Mindfulness &amp; Spiritual Presence</string>
+    <string name="nav_tasbih">Tasbih</string>
+    <string name="nav_vocabulary">Quranic Words</string>
+    <string name="nav_duas">Duas</string>
+    <string name="nav_habits">Habits &amp; Routine</string>
+    <string name="nav_reflections">Reflections</string>
+
+    <!-- Prayer Times -->
+    <string name="prayer_times_title">Prayer Times</string>
+    <string name="prayer_fajr">Fajr</string>
+    <string name="prayer_sunrise">Sunrise</string>
+    <string name="prayer_dhuhr">Dhuhr</string>
+    <string name="prayer_asr">Asr</string>
+    <string name="prayer_maghrib">Maghrib</string>
+    <string name="prayer_isha">Isha</string>
+    <string name="prayer_next">NEXT</string>
+    <string name="prayer_countdown">%1$d min</string>
+    <string name="qibla_label">Qibla %1$s</string>
+    <string name="location_selector_title">Location &amp; Prayer Calculation</string>
+    <string name="location_current_city">Current City</string>
+    <string name="location_select_city">Select City</string>
+    <string name="location_use_gps">Use Device GPS</string>
+    <string name="location_gps_detected">GPS Location Detected</string>
+    <string name="location_calc_method">Calculation Method</string>
+    <string name="location_asr_method">Asr Juristic Method</string>
+
+    <!-- Language & Localization -->
+    <string name="language_title">Language / اللغة</string>
+    <string name="language_english">English</string>
+    <string name="language_arabic">العربية (Arabic)</string>
+    <string name="language_select">Select Language</string>
+
+    <!-- Habit & Checklist -->
+    <string name="habit_checklist_title">Daily Spiritual Habit Checklist</string>
+    <string name="habit_checklist_subtitle">Select any day to track &amp; review your devotion</string>
+    <string name="today_label">Today</string>
+    <string name="mark_all_done">Mark All Done</string>
+    <string name="reset_checklist">Reset Checklist</string>
+    <string name="goals_completed_summary">%1$d of %2$d Goals Completed (%3$d%%)</string>
+    <string name="add_custom_goal">Add Custom Spiritual Goal</string>
+
+    <!-- General Actions -->
+    <string name="close">Close</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="export_import">Export / Import</string>
+    <string name="streak_days_label">%1$d-Day Sakina Streak</string>
+</resources>

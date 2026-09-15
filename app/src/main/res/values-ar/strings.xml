@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">سكينة</string>
+    <string name="app_tagline">الطمأنينة الإسلامية واليقظة الروحية</string>
+    <string name="nav_tasbih">التسبيح</string>
+    <string name="nav_vocabulary">مفردات قرآنية</string>
+    <string name="nav_duas">الأدعية</string>
+    <string name="nav_habits">العادات والأوراد</string>
+    <string name="nav_reflections">التأملات</string>
+
+    <!-- Prayer Times -->
+    <string name="prayer_times_title">مواقيت الصلاة</string>
+    <string name="prayer_fajr">الفجر</string>
+    <string name="prayer_sunrise">الشروق</string>
+    <string name="prayer_dhuhr">الظهر</string>
+    <string name="prayer_asr">العصر</string>
+    <string name="prayer_maghrib">المغرب</string>
+    <string name="prayer_isha">العشاء</string>
+    <string name="prayer_next">القادمة</string>
+    <string name="prayer_countdown">%1$d دقيقة</string>
+    <string name="qibla_label">القبلة %1$s</string>
+    <string name="location_selector_title">الموقع وحساب المواقيت</string>
+    <string name="location_current_city">المدينة الحالية</string>
+    <string name="location_select_city">اختر المدينة</string>
+    <string name="location_use_gps">تحديد الموقع التلقائي (GPS)</string>
+    <string name="location_gps_detected">تم تحديد الموقع عبر GPS</string>
+    <string name="location_calc_method">طريقة الحساب</string>
+    <string name="location_asr_method">المذهب في صلاة العصر</string>
+
+    <!-- Language & Localization -->
+    <string name="language_title">اللغة / Language</string>
+    <string name="language_english">English</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_select">اختر لغة التطبيق</string>
+
+    <!-- Habit & Checklist -->
+    <string name="habit_checklist_title">قائمة العادات الروحية اليومية</string>
+    <string name="habit_checklist_subtitle">اختر أي يوم لمتابعة وردك اليومي وتقييم التزامك</string>
+    <string name="today_label">اليوم</string>
+    <string name="mark_all_done">تحديد الكل كمكتمل</string>
+    <string name="reset_checklist">إعادة تعيين القائمة</string>
+    <string name="goals_completed_summary">أُنجز %1$d من %2$d أهداف (%3$d%%)</string>
+    <string name="add_custom_goal">إضافة هدف روحي مخصص</string>
+
+    <!-- General Actions -->
+    <string name="close">إغلاق</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="export_import">تصدير / استيراد</string>
+    <string name="streak_days_label">سلسلة الالتزام: %1$d أيام</string>
+</resources>

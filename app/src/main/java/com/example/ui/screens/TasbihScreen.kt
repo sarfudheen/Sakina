@@ -11,6 +11,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -46,9 +47,13 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FilterTiltShift
 import androidx.compose.material.icons.filled.Flag
+import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.Insights
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.RecordVoiceOver
 import androidx.compose.material.icons.filled.Repeat
 import androidx.compose.material.icons.filled.RestartAlt
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material.icons.filled.TouchApp
@@ -93,7 +98,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.data.audio.SakinaAudioPlayer
 import com.example.data.repository.SakinaRepository
+import com.example.ui.components.DhikrAudioLibraryDialog
+import com.example.ui.components.FullScreenTasbihDialog
+import com.example.ui.i18n.AppLanguage
+import com.example.ui.i18n.SakinaLocaleManager
 import com.example.ui.theme.SakinaError
 import com.example.ui.theme.SakinaPrimary
 import com.example.ui.theme.SakinaPrimaryContainer
@@ -129,6 +139,12 @@ fun TasbihScreen(
     var showResetDialog by remember { mutableStateOf(false) }
     var showSessionLoggedToast by remember { mutableStateOf(false) }
     var isZenMode by remember { mutableStateOf(false) }
+    var showFullScreenTasbih by remember { mutableStateOf(false) }
+    var showAudioLibraryDialog by remember { mutableStateOf(false) }
+
+    val currentLanguage by SakinaLocaleManager.currentLanguage.collectAsState()
+    val isArabic = currentLanguage == AppLanguage.ARABIC
+    val isAudioPlaying by SakinaAudioPlayer.isPlaying.collectAsState()
 
     fun vibrateBead(isMilestone: Boolean = false, isComplete: Boolean = false) {
         if (!hapticEnabled) return
@@ -295,6 +311,38 @@ fun TasbihScreen(
                                 modifier = Modifier.size(17.dp)
                             )
                         }
+
+                        IconButton(
+                            onClick = { showAudioLibraryDialog = true },
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(CircleShape)
+                                .background(SakinaSurfaceContainer)
+                                .testTag("audio_library_icon_btn")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.RecordVoiceOver,
+                                contentDescription = "Audio Pronunciation",
+                                tint = SakinaPrimary,
+                                modifier = Modifier.size(17.dp)
+                            )
+                        }
+
+                        IconButton(
+                            onClick = { showFullScreenTasbih = true },
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(CircleShape)
+                                .background(SakinaPrimaryContainer)
+                                .testTag("fullscreen_tasbih_icon_btn")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Fullscreen,
+                                contentDescription = "Full Screen Tasbih",
+                                tint = SakinaTertiaryFixed,
+                                modifier = Modifier.size(17.dp)
+                            )
+                        }
                     }
                 }
 
@@ -311,6 +359,7 @@ fun TasbihScreen(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(50))
                                 .background(SakinaPrimaryContainer)
+                                .clickable { showCustomTargetDialog = true }
                                 .padding(horizontal = 10.dp, vertical = 4.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -343,21 +392,121 @@ fun TasbihScreen(
                     }
 
                     Row(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(50))
+                            .background(SakinaSecondaryContainer.copy(alpha = 0.6f))
+                            .clickable { showFullScreenTasbih = true }
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(5.dp)
+                                .size(6.dp)
                                 .clip(CircleShape)
                                 .background(SakinaSecondary)
                         )
                         Text(
-                            text = "Full Screen Tap Active",
+                            text = if (isArabic) "ملء الشاشة والعد التلقائي" else "Full Screen & Auto",
                             fontSize = 11.sp,
-                            color = SakinaSecondary,
-                            fontWeight = FontWeight.Medium
+                            color = SakinaPrimary,
+                            fontWeight = FontWeight.Bold
                         )
+                    }
+                }
+
+                // Interactive Quick Action Cards: Full-Screen Auto-Cadence & Audio Pronunciation
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 2.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .weight(1.1f)
+                            .clip(RoundedCornerShape(14.dp))
+                            .clickable { showFullScreenTasbih = true }
+                            .testTag("open_fullscreen_tasbih_banner"),
+                        colors = CardDefaults.cardColors(containerColor = SakinaPrimaryContainer)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 9.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(CircleShape)
+                                    .background(SakinaPrimary),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Speed,
+                                    contentDescription = null,
+                                    tint = SakinaTertiaryFixed,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                            Column {
+                                Text(
+                                    text = if (isArabic) "العد التلقائي وملء الشاشة" else "Auto Count & Full Screen",
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
+                                )
+                                Text(
+                                    text = if (isArabic) "يتعلم وتيرتك في 3-5 نقرات" else "Learns rhythm in 3-5 taps",
+                                    fontSize = 10.sp,
+                                    color = SakinaPrimaryFixed
+                                )
+                            }
+                        }
+                    }
+
+                    Card(
+                        modifier = Modifier
+                            .weight(0.9f)
+                            .clip(RoundedCornerShape(14.dp))
+                            .border(BorderStroke(1.dp, Color(0xFFE2E8F0)), RoundedCornerShape(14.dp))
+                            .clickable { showAudioLibraryDialog = true }
+                            .testTag("open_audio_library_banner"),
+                        colors = CardDefaults.cardColors(containerColor = SakinaSurfaceContainerLowest)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 9.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(CircleShape)
+                                    .background(SakinaSecondaryContainer),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.RecordVoiceOver,
+                                    contentDescription = null,
+                                    tint = SakinaPrimary,
+                                    modifier = Modifier.size(17.dp)
+                                )
+                            }
+                            Column {
+                                Text(
+                                    text = if (isArabic) "مكتبة التلاوة" else "Audio Library",
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    text = if (isArabic) "مخارج الحروف" else "Tajweed guide",
+                                    fontSize = 10.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -424,6 +573,40 @@ fun TasbihScreen(
                         )
 
                         Spacer(modifier = Modifier.height(2.dp))
+
+                        // Pronunciation Play Button & Phonetics
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            IconButton(
+                                onClick = {
+                                    SakinaAudioPlayer.playDhikr(context, currentDhikr)
+                                },
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .clip(CircleShape)
+                                    .background(if (isAudioPlaying) SakinaPrimaryContainer else SakinaSurfaceContainer)
+                                    .testTag("play_current_dhikr_audio")
+                            ) {
+                                Icon(
+                                    imageVector = if (isAudioPlaying) Icons.Default.Pause else Icons.Default.VolumeUp,
+                                    contentDescription = "Listen to authentic recitation",
+                                    tint = if (isAudioPlaying) SakinaTertiaryFixed else SakinaPrimary,
+                                    modifier = Modifier.size(17.dp)
+                                )
+                            }
+
+                            if (currentDhikr.phoneticBreakdown != null) {
+                                Text(
+                                    text = currentDhikr.phoneticBreakdown!!,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = SakinaSecondary,
+                                    fontFamily = FontFamily.Monospace
+                                )
+                            }
+                        }
 
                         Row(
                             modifier = Modifier
@@ -951,6 +1134,23 @@ fun TasbihScreen(
                 }
             }
         }
+    }
+
+    // Full-Screen & Cadence Auto-Increment Mode Dialog
+    if (showFullScreenTasbih) {
+        FullScreenTasbihDialog(
+            onDismissRequest = { showFullScreenTasbih = false }
+        )
+    }
+
+    // Authentic Audio Dhikr Library Dialog
+    if (showAudioLibraryDialog) {
+        DhikrAudioLibraryDialog(
+            onDismissRequest = { showAudioLibraryDialog = false },
+            onSelectDhikrForTasbih = { selectedDhikr ->
+                SakinaRepository.setDhikr(selectedDhikr)
+            }
+        )
     }
 }
 

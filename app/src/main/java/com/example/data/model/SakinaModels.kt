@@ -22,7 +22,10 @@ data class DhikrItem(
     val verseTranslit: String,
     val verseMeaning: String,
     val reference: String,
-    val defaultTarget: Int = 100
+    val defaultTarget: Int = 100,
+    val audioUrl: String? = null,
+    val makharijTips: String? = null,
+    val phoneticBreakdown: String? = null
 )
 
 data class WordToken(

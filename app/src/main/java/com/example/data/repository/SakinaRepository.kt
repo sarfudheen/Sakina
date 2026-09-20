@@ -64,7 +64,9 @@ object SakinaRepository {
             verseTranslit = "SubhanAllahi wa bihamdih",
             verseMeaning = "“Glory be to Allah and praise Him”",
             reference = "Sahih Muslim 2691 · 100x sins forgiven",
-            defaultTarget = 100
+            defaultTarget = 100,
+            phoneticBreakdown = "Sub-ḥaa-nal-laah",
+            makharijTips = "Makhraj of Haa (ح): Emitted from the middle of the throat (وسط الحلق) with a crisp, breathy friction, distinct from the chest 'h' (هـ)."
         ),
         DhikrItem(
             id = "alhamdulillah",
@@ -74,7 +76,9 @@ object SakinaRepository {
             verseTranslit = "Al-hamdu lillahi Rabbil-'alamin",
             verseMeaning = "“All praise is due to Allah alone, Lord of the worlds”",
             reference = "Surah Al-Fatihah 1:2 · Fills the Scales",
-            defaultTarget = 33
+            defaultTarget = 33,
+            phoneticBreakdown = "Al-ḥam-du lil-laah",
+            makharijTips = "Clear vocalization of the initial 'Al' (إظهار قمري). Ensure the middle-throat 'Haa' (ح) is soft and breathy."
         ),
         DhikrItem(
             id = "allahuakbar",
@@ -84,7 +88,9 @@ object SakinaRepository {
             verseTranslit = "Allahu Akbaru Kabira, walhamdu lillahi kathira",
             verseMeaning = "“Allah is truly the Greatest, abundant praise be to Him”",
             reference = "Sahih Muslim 601 · Gates of Heaven opened",
-            defaultTarget = 33
+            defaultTarget = 33,
+            phoneticBreakdown = "Al-laa-hu Ak-bar",
+            makharijTips = "Heavy Tafkheem (تفخيم) on the Lam in 'Allah'. Soft Hams (همس) whisper on the Kaf (ك) in 'Akbar'."
         ),
         DhikrItem(
             id = "astaghfirullah",
@@ -94,7 +100,9 @@ object SakinaRepository {
             verseTranslit = "Astaghfirullah wa atubu ilayh",
             verseMeaning = "“I seek forgiveness of Allah and turn to Him in repentance”",
             reference = "Sahih Al-Bukhari 6307 · 70+ times daily",
-            defaultTarget = 100
+            defaultTarget = 100,
+            phoneticBreakdown = "As-tagh-fi-rul-laah",
+            makharijTips = "Makhraj of Ghayn (غ): Upper throat (أدنى الحلق) with slight gargle resonance; followed by thin Ra (ر) because of Kasrah."
         ),
         DhikrItem(
             id = "lailahaillallah",
@@ -104,7 +112,45 @@ object SakinaRepository {
             verseTranslit = "La ilaha illallahu wahdahu la sharika lah",
             verseMeaning = "“None has the right to be worshipped except Allah alone”",
             reference = "Muwatta Malik · Best prayer of all prophets",
-            defaultTarget = 100
+            defaultTarget = 100,
+            phoneticBreakdown = "Laaa i-laa-ha il-lal-laah",
+            makharijTips = "Elongation (Madd Munfasil 2-4 counts) on 'Lā'. Firm Tashdeed (شدّة) on 'illa'."
+        ),
+        DhikrItem(
+            id = "subhanallah_azim",
+            arabic = "سُبْحَانَ اللَّهِ الْعَظِيمِ",
+            title = "SubhanAllahil 'Azim",
+            verseArabic = "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
+            verseTranslit = "SubhanAllahi wa bihamdihi, SubhanAllahil 'Azim",
+            verseMeaning = "“Glory be to Allah and His praise; Glory be to Allah the Magnificent”",
+            reference = "Sahih Al-Bukhari 6682 · Light on tongue, heavy on scales",
+            defaultTarget = 100,
+            phoneticBreakdown = "Sub-ḥaa-nal-laa-hil 'A-ẓeem",
+            makharijTips = "Makhraj of Ayn (ع) from middle throat; heavy emphatic Zha (ظ) tip of tongue against upper incisors."
+        ),
+        DhikrItem(
+            id = "lahawla",
+            arabic = "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+            title = "La Hawla",
+            verseArabic = "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ",
+            verseTranslit = "La hawla wa la quwwata illa billahil 'Aliyyil 'Azim",
+            verseMeaning = "“There is no power and no strength except with Allah”",
+            reference = "Sahih Al-Bukhari 6384 · A treasure from Paradise",
+            defaultTarget = 100,
+            phoneticBreakdown = "Laa ḥaw-la wa laa quw-wa-ta il-laa bil-laah",
+            makharijTips = "Deep soft Waw (و) diphthong in 'Hawl'; strong Qaf (ق) from back of tongue with Tashdeed on Waw."
+        ),
+        DhikrItem(
+            id = "salawat",
+            arabic = "اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ",
+            title = "Salawat upon the Prophet",
+            verseArabic = "اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ",
+            verseTranslit = "Allahumma salli 'ala Muhammadin wa 'ala ali Muhammad",
+            verseMeaning = "“O Allah, bestow peace and blessings upon Muhammad and his family”",
+            reference = "Sunan an-Nasa'i 1297 · 10 blessings and 10 ranks raised",
+            defaultTarget = 100,
+            phoneticBreakdown = "Al-laa-hum-ma sal-li 'a-laa Mu-ḥam-mad",
+            makharijTips = "Strong Ghunnah (nasalization 2 beats) on the Meem (مّ) in Allahumma; emphatic heavy Sad (ص)."
         )
     )
 

@@ -76,6 +76,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.repository.SakinaRepository
 import com.example.data.location.PrayerCalculator
+import com.example.data.location.QiblaInfo
 import com.example.ui.components.SakinaTab
 import com.example.ui.i18n.AppLanguage
 import com.example.ui.i18n.SakinaLocaleManager
@@ -110,7 +111,7 @@ fun HomeScreen(
     val isArabic = currentLanguage == AppLanguage.ARABIC
     var isAyahAudioPlaying by remember { mutableStateOf(false) }
 
-    val qibla = remember(locationConfig.latitude, locationConfig.longitude) {
+    val qibla: QiblaInfo = remember(locationConfig.latitude, locationConfig.longitude) {
         PrayerCalculator.calculateQibla(locationConfig.latitude, locationConfig.longitude)
     }
 
@@ -281,7 +282,7 @@ fun HomeScreen(
                                 )
                             }
                             Text(
-                                text = if (isArabic) "خلال ${prayerInfo.minutesUntilNext} دقيقة تقريباً" else "In approximately ${prayerInfo.minutesUntilNext} minutes",
+                                text = if (isArabic) "خلال ${prayerInfo.countdownMinutes} دقيقة تقريباً" else "In approximately ${prayerInfo.countdownMinutes} minutes",
                                 fontSize = 13.sp,
                                 color = SakinaPrimaryFixedDim.copy(alpha = 0.9f)
                             )
@@ -323,18 +324,18 @@ fun HomeScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "${prayerTimesList.firstOrNull()?.let { if (isArabic) it.nameArabic else it.name } ?: "Fajr"} ${prayerTimesList.firstOrNull()?.time ?: ""}",
+                                text = "${prayerTimesList.firstOrNull()?.let { if (isArabic) it.arabicName else it.name } ?: "Fajr"} ${prayerTimesList.firstOrNull()?.time ?: ""}",
                                 fontSize = 11.sp,
                                 color = SakinaPrimaryFixedDim.copy(alpha = 0.8f)
                             )
                             Text(
-                                text = "${if (isArabic) (nextPrayer?.nameArabic ?: "") else (nextPrayer?.name ?: "")} ${nextPrayer?.time ?: ""}",
+                                text = "${if (isArabic) (nextPrayer?.arabicName ?: "") else (nextPrayer?.name ?: "")} ${nextPrayer?.time ?: ""}",
                                 fontSize = 11.sp,
                                 color = SakinaTertiaryFixed,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "${prayerTimesList.lastOrNull()?.let { if (isArabic) it.nameArabic else it.name } ?: "Isha"} ${prayerTimesList.lastOrNull()?.time ?: ""}",
+                                text = "${prayerTimesList.lastOrNull()?.let { if (isArabic) it.arabicName else it.name } ?: "Isha"} ${prayerTimesList.lastOrNull()?.time ?: ""}",
                                 fontSize = 11.sp,
                                 color = SakinaPrimaryFixedDim.copy(alpha = 0.8f)
                             )
